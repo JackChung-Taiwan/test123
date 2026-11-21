@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="臺灣景點100張圖片展示，國一 GitHub Desktop 上傳練習。">
+<title>臺灣景點100張｜我的 GitHub 作品</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#1c3449;background:#f3f7fa}
+*{box-sizing:border-box}body{margin:0}a{color:inherit}
+.hero{background:linear-gradient(90deg,#0b294de8,#19567ea6),url("Taiwan_Scenic_100_Images/images/001.jpg") center/cover;color:#fff;padding:24px clamp(20px,5vw,64px) 56px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:14px}nav strong{letter-spacing:.04em}
+nav a{padding:9px 14px;border:1px solid #ffffff6b;text-decoration:none;border-radius:999px}
+.hero-inner{max-width:1100px;margin:50px auto 0}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:#a9edff}.hero h1{font-size:clamp(32px,6vw,58px);margin:14px 0 12px;line-height:1.25}.hero p{max-width:680px;line-height:1.8;color:#d8eafa}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.tags span{border:1px solid #ffffff77;border-radius:7px;background:#ffffff20;padding:7px 11px;font-size:12px}
+main{max-width:1180px;margin:auto;padding:38px 20px 70px}
+.headline{display:flex;gap:12px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.headline h2{margin:0;font-size:29px}.headline p{margin:8px 0 0;color:#586f81;line-height:1.6}
+.count{font-size:13px;color:#3e6882}.count strong{font-size:25px;color:#005b8d}
+.tools{display:flex;flex-wrap:wrap;gap:13px;margin:25px 0 20px}
+.tools label{display:grid;gap:7px;flex:1 1 230px;font-size:13px;font-weight:800;color:#42617a}
+.tools input,.tools select{height:47px;padding:10px 14px;border-radius:9px;border:1px solid #d1e0e8;background:#fff;font:inherit;color:#23445d}
+.tools button{align-self:end;background:#dfeaf1;color:#174a67;border:0;border-radius:9px;min-height:47px;padding:0 18px;font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.card{border:1px solid #e0eaf0;box-shadow:0 3px 14px #12354e0b;border-radius:14px;overflow:hidden;background:#fff}
+.card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.card-info{padding:14px}.card-info .meta{color:#708495;font-size:12px;display:flex;justify-content:space-between;gap:5px}
+.card h3{font-size:17px;line-height:1.4;margin:9px 0 5px}.card p{font-size:13px;color:#6c8090;margin:0 0 11px}
+.card a{font-size:13px;font-weight:700;color:#0575a4;text-decoration:none}.card a:hover{text-decoration:underline}
+.notice,.classroom{margin-top:28px;padding:22px;border-radius:14px;line-height:1.8}.notice{background:#fff6e5;color:#6b5429;font-size:13px}.classroom{background:#e5f1f8}.classroom h2{margin:0 0 6px;font-size:22px}.classroom p{margin:0 0 11px}
+.classroom ol{margin:0 0 0 2px;padding-left:23px}
+.classroom a{color:#005b8d}
+.none{padding:35px;text-align:center;color:#667d8b}
+footer{background:#13334b;color:#bbd3e3;padding:22px;text-align:center;font-size:12px;line-height:1.8}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.hero{padding-bottom:40px}.hero-inner{margin-top:35px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card-info{padding:10px}.card h3{font-size:15px}.headline h2{font-size:23px}}
+@media(max-width:340px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero"><nav><strong>TAIWAN SCENIC 100</strong><a href="https://github.com/JackChung-Taiwan/test123" target="_blank" rel="noopener noreferrer">查看 GitHub 專案</a></nav>
+<div class="hero-inner"><div class="eyebrow">GITHUB DESKTOP × 臺灣景點</div><h1>臺灣景點探索<br>100 張圖片作品</h1>
+<p>利用 GitHub Desktop，上傳圖片、學習 Commit 與 Push，再透過 GitHub Pages 展示自己的網頁作品。</p>
+<div class="tags"><span>100 張 JPG</span><span>國一資訊課</span><span>GitHub Pages 網站</span></div></div></header>
+<main>
+<div class="headline"><div><h2>探索臺灣景點</h2><p>搜尋景點名稱，或選擇縣市來瀏覽圖片。</p></div><div class="count">目前顯示 <strong id="count">100</strong> 張</div></div>
+<div class="tools"><label>搜尋景點<input id="search" type="search" placeholder="例如：臺北101、阿里山、臺南" autocomplete="off"></label>
+<label>選擇縣市<select id="region"><option value="">全部縣市</option></select></label>
+<button type="button" id="reset">清除搜尋</button></div>
+<section id="gallery" class="grid" aria-live="polite"></section>
+<p id="none" class="none" hidden>找不到符合條件的景點，試試其他關鍵字。</p>
+<p id="error" class="none" hidden>景點資料暫時無法載入，請確認 GitHub 已上傳 CSV 與圖片檔案。</p>
+<section class="classroom"><h2>學生實作：上傳自己的圖片</h2><p><b>只要記住：放檔案 → Commit → Push。</b></p>
+<ol><li>開啟 GitHub Desktop，按 <b>Show in Explorer</b>。</li>
+<li>在 <code>Taiwan_Scenic_100_Images/images</code> 找到要替換的照片，例如 <code>001.jpg</code>，用自己拍攝或有授權的新照片覆蓋。</li>
+<li>回到 GitHub Desktop，在 <b>Changes</b> 確認有修改。</li>
+<li>輸入 Summary，按 <b>Commit to main</b>。</li>
+<li>按 <b>Push origin</b>，等待網站更新。</li></ol>
+<p>更多教學：<a href="https://github.com/JackChung-Taiwan/Taiwan-Scene" target="_blank" rel="noopener noreferrer">GitHub Desktop 課堂教材與下載</a></p></section>
+<div class="notice">圖片是 AI 生成的臺灣景點主題示意圖，不是實景攝影；可能與景點真實外觀不同。請勿將圖片當成正式旅遊介紹或現場資訊。</div>
+</main>
+<footer>GitHub Desktop 教學專案 · 使用 HTML、CSS、JavaScript 與 GitHub Pages 製作</footer>
+<script>
+"use strict";
+const ROOT="Taiwan_Scenic_100_Images/";
+const gallery=document.getElementById("gallery");
+const search=document.getElementById("search");
+const region=document.getElementById("region");
+const count=document.getElementById("count");
+let attractions=[];
+function csvParse(text){
+ const rows=[];let row=[],field="",quoted=false;
+ text=text.replace(/^\uFEFF/,"");
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+  if(c==='"'){if(quoted && text[i+1]==='"'){field+='"';i++;}else{quoted=!quoted;}}
+  else if(c===","&&!quoted){row.push(field);field="";}
+  else if((c==="\n"||c==="\r")&&!quoted){if(c==="\r"&&text[i+1]==="\n")i++;row.push(field);if(row.some(v=>v.trim()!==""))rows.push(row);row=[];field="";}
+  else field+=c;
+ }
+ row.push(field);if(row.some(v=>v.trim()!==""))rows.push(row);
+ return rows;
+}
+function render(){
+ const q=search.value.trim().toLocaleLowerCase(),r=region.value;
+ const items=attractions.filter(x=>(!r||x.region===r)&&(!q||(x.name+" "+x.region+" "+x.category).toLocaleLowerCase().includes(q)));
+ count.textContent=items.length;gallery.replaceChildren();document.getElementById("none").hidden=items.length>0;
+ for(const item of items){
+  const card=document.createElement("article");card.className="card";
+  const img=document.createElement("img");img.src=ROOT+item.file;img.alt=item.name+"（AI 主題示意圖）";img.loading="lazy";img.decoding="async";
+  const info=document.createElement("div");info.className="card-info";
+  const meta=document.createElement("div");meta.className="meta";
+  const r=document.createElement("span");r.textContent=item.region;
+  const no=document.createElement("span");no.textContent="#"+item.id.padStart(3,"0");
+  meta.append(r,no);
+  const h=document.createElement("h3");h.textContent=item.name;
+  const p=document.createElement("p");p.textContent=item.category;
+  const a=document.createElement("a");a.href=ROOT+item.file;a.target="_blank";a.rel="noopener noreferrer";a.textContent="查看圖片";
+  info.append(meta,h,p,a);card.append(img,info);gallery.append(card);
+ }
+}
+fetch(ROOT+"attractions.csv").then(r=>{if(!r.ok)throw Error("資料檔未找到");return r.text()}).then(csv=>{
+ const rows=csvParse(csv).slice(1);
+ attractions=rows.filter(a=>a.length>=5).map(a=>({id:a[0].trim(),region:a[1].trim(),name:a[2].trim(),category:a[3].trim(),file:a[4].trim()}));
+ const regions=[...new Set(attractions.map(a=>a.region))];
+ for(const name of regions){const o=document.createElement("option");o.value=name;o.textContent=name;region.append(o);}
+ render();
+}).catch(()=>{document.getElementById("error").hidden=false;});
+search.addEventListener("input",render);region.addEventListener("change",render);
+document.getElementById("reset").addEventListener("click",()=>{search.value="";region.value="";render();});
+</script>
+</body>
+</html>
